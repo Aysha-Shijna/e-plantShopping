@@ -5,18 +5,22 @@ import CartItem from "../CartItem/CartItem";
 
 const ProductList = () => {
   const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart.items);
+  const cart = useSelector((state) => state.cart.items);
 
   const [showPlants, setShowPlants] = useState(true);
   const [addedToCart, setAddedToCart] = useState({});
 
   useEffect(() => {
     const addedMap = {};
-    cart.forEach(item => {
+    cart.forEach((item) => {
       addedMap[item.id] = true;
     });
     setAddedToCart(addedMap);
   }, [cart]);
+
+  const calculateTotalQuantity = () => {
+    return cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+  };
 
   const plantsArray = [
     {
@@ -103,7 +107,7 @@ const ProductList = () => {
   const handleShowCart = () => setShowPlants(false);
 
   const handleAddToCart = (product) => {
-    dispatch(addItem({ ...product, quantity: 1 })); // Added quantity:1 here
+    dispatch(addItem({ ...product, quantity: 1 }));
     setAddedToCart((prevState) => ({
       ...prevState,
       [product.id]: true,
@@ -150,10 +154,31 @@ const ProductList = () => {
                 border: "none",
                 color: "white",
                 cursor: "pointer",
+                position: "relative",
               }}
               aria-label="Show Cart"
             >
               🛒 Cart
+              {calculateTotalQuantity() > 0 && (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "-8px",
+                    right: "-8px",
+                    background: "red",
+                    borderRadius: "50%",
+                    color: "white",
+                    width: "20px",
+                    height: "20px",
+                    fontSize: "14px",
+                    lineHeight: "20px",
+                    textAlign: "center",
+                  }}
+                  aria-label={`${calculateTotalQuantity()} items in cart`}
+                >
+                  {calculateTotalQuantity()}
+                </span>
+              )}
             </button>
           </li>
         </ul>
