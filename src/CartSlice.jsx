@@ -8,7 +8,7 @@ export const CartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const item = action.payload;
-      const existing = state.items.find((i) => i.id === item.id);
+      const existing = state.items.find((i) => i.name === item.name);
       if (existing) {
         existing.quantity += 1;
       } else {
@@ -16,14 +16,13 @@ export const CartSlice = createSlice({
       }
     },
     removeItem: (state, action) => {
-      const { id } = action.payload;
-      state.items = state.items.filter((item) => item.id !== id);
+      state.items = state.items.filter((item) => item.name !== action.payload);
     },
     updateQuantity: (state, action) => {
-      const { id, quantity } = action.payload;
-      const item = state.items.find((i) => i.id === id);
-      if (item && quantity >= 1) {
-        item.quantity = quantity;
+      const { name, quantity } = action.payload;
+      const itemToUpdate = state.items.find((item) => item.name === name);
+      if (itemToUpdate) {
+        itemToUpdate.quantity = quantity;
       }
     },
   },
