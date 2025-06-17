@@ -7,35 +7,51 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // 🔢 Calculate total for all items
+  // Calculate total amount for all items in cart
   const calculateTotalAmount = () => {
-    return cart.reduce((total, item) => {
-      const price = parseInt(item.price.replace(/[^\d]/g, '')); // Remove ₹ symbol
-      return total + price * item.quantity;
-    }, 0);
+    let total = 0;
+    cart.forEach(item => {
+      const price = parseFloat(item.price.replace(/[^\d.]/g, '')) || 0;
+      total += price * item.quantity;
+    });
+    return total.toFixed(2);
   };
 
-  // ➕ Increment quantity
+  // Increment quantity of item
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
-  // ➖ Decrement quantity
+  // Decrement quantity or remove item if quantity reaches zero
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+    } else {
+      dispatch(removeItem(item.name));
     }
   };
 
-  // ❌ Remove item
+  // Remove item from cart
   const handleRemove = (item) => {
     dispatch(removeItem(item.name));
   };
 
-  // 🧮 Subtotal for each item
+  // Calculate subtotal for an item (price * quantity)
   const calculateTotalCost = (item) => {
-    const price = parseInt(item.price.replace(/[^\d]/g, ''));
-    return price * item.quantity;
+    const price = parseFloat(item.price.replace(/[^\d.]/g, '')) || 0;
+    return (price * item.quantity).toFixed(2);
+  };
+
+  // Continue shopping handler passed from parent
+  const handleContinueShopping = (e) => {
+    if (onContinueShopping) {
+      onContinueShopping(e);
+    }
+  };
+
+  // Placeholder for checkout
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
   };
 
   return (
@@ -81,11 +97,17 @@ const CartItem = ({ onContinueShopping }) => {
       )}
 
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={onContinueShopping}>
+        <button className="get-started-button" onClick={handleContinueShopping}>
           Continue Shopping
         </button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button
+          className="get-started-button1"
+          disabled={cart.length === 0}
+          onClick={handleCheckoutShopping}
+        >
+          Checkout
+        </button>
       </div>
     </div>
   );

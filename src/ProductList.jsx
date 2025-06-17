@@ -1,12 +1,22 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../CartSlice";
 import CartItem from "../CartItem/CartItem";
 
 const ProductList = () => {
   const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart.items);
+
   const [showPlants, setShowPlants] = useState(true);
   const [addedToCart, setAddedToCart] = useState({});
+
+  useEffect(() => {
+    const addedMap = {};
+    cart.forEach(item => {
+      addedMap[item.id] = true;
+    });
+    setAddedToCart(addedMap);
+  }, [cart]);
 
   const plantsArray = [
     {
@@ -93,10 +103,10 @@ const ProductList = () => {
   const handleShowCart = () => setShowPlants(false);
 
   const handleAddToCart = (product) => {
-    dispatch(addItem(product)); // Redux: add product to cart
+    dispatch(addItem({ ...product, quantity: 1 })); // Added quantity:1 here
     setAddedToCart((prevState) => ({
       ...prevState,
-      [product.id]: true, // Use ID as key
+      [product.id]: true,
     }));
   };
 
