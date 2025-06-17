@@ -42,21 +42,21 @@ const ProductList = () => {
           name: "String of Pearls",
           price: "₹299",
           imageUrl:
-            "https://cdn.shopify.com/s/files/1/0416/6418/2588/products/String-of-Pearls-Plant-on-white-background_360x.jpg?v=1678902824",
+            "https://hips.hearstapps.com/hmg-prod/images/beautiful-spider-plant-chlorophytum-isolated-in-a-royalty-free-image-1727206150.jpg?crop=0.668xw:1.00xh;0,0&resize=1120:*",
           id: "stringofpearls",
         },
         {
           name: "Panda Plant",
           price: "₹350",
           imageUrl:
-            "https://cdn.shopify.com/s/files/1/0277/9437/9066/products/pandaplant_400x400.jpg?v=1617220717",
+            "https://cdn.shopify.com/s/files/1/0043/3628/7813/files/4-inch-panda-plant-kalanchoe-tomentosa_480x480.jpg?v=1698928952",
           id: "pandaplant",
         },
         {
           name: "Moon Cactus",
           price: "₹550",
           imageUrl:
-            "https://cdn.shopify.com/s/files/1/0277/9437/9066/products/mooncactus_400x400.jpg?v=1617212443",
+            "https://cdn11.bigcommerce.com/s-oqm1pc/images/stencil/1280x1280/products/4260/15012/grafted_red__43861.1655327193.jpg?c=3",
           id: "mooncactus",
         },
       ],
@@ -68,21 +68,21 @@ const ProductList = () => {
           name: "Aloe Vera",
           price: "₹249",
           imageUrl:
-            "https://cdn.shopify.com/s/files/1/0277/9437/9066/products/aloe-vera_400x400.jpg?v=1617208564",
+            "https://m.media-amazon.com/images/I/81avahmtSIL._UF894,1000_QL80_.jpg",
           id: "aloevera",
         },
         {
           name: "Tulsi",
           price: "₹250",
           imageUrl:
-            "https://cdn.shopify.com/s/files/1/0277/9437/9066/products/tulsi-plant_400x400.jpg?v=1617207803",
+            "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRK0l91wD4mvc0qLM9j2ZaHYKf2OTPj3flsY_KXNaUcAtVx30lO0Qi4LOh_D9ojk5q6B1ZcjxjgSFmkks0mDuQOIA",
           id: "tulsi",
         },
         {
           name: "Money Plant",
           price: "₹300",
           imageUrl:
-            "https://cdn.shopify.com/s/files/1/0277/9437/9066/products/money-plant_400x400.jpg?v=1617208564",
+            "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT_wgGV4589mCq_MVboNzpEuorIZIDMbECTXx9n6EHCkmhuTSgZl3Pfm2Wn63GiOyIT8YqzFgwq1urPvrB5C2_Lkg",
           id: "moneyplant",
         },
       ],
